@@ -13,76 +13,40 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import java.util.Random;
 
-public class Main extends Activity implements OnClickListener
+public class Main extends Activity
 {
-    private static final String tag = "Main";
-    private MalibuCountDownTimer countDownTimer;
-    private long timeElapsed;
-    private boolean timerHasStarted = false;
-    private Button startB;
-    private TextView text;
-    private TextView timeElapsedView;
-
-    private final long startTime = 50000;
-    private final long interval = 1000;
+    Random randomGenerator = new Random();
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        startB = (Button) this.findViewById(R.id.button);
-        startB.setOnClickListener(this);
-
-        text = (TextView) this.findViewById(R.id.timer);
-        timeElapsedView = (TextView) this.findViewById(R.id.timeElapsed);
-        countDownTimer = new MalibuCountDownTimer(startTime, interval);
-        text.setText(text.getText() + String.valueOf(startTime));
     }
 
-    @Override
-    public void onClick(View v)
+    public void addititon()
     {
-        if (!timerHasStarted)
+        int a = 0, b = 0, c = 0, count = 0, nu = 0,;
+        String su = null;
+        long t= System.currentTimeMillis();
+        long end = t+60000;
+        EditText in = (EditText)findViewById(R.id.editText);
+        TextView problem = (TextView)findViewById(R.id.problem);
+        while(System.currentTimeMillis() < end)
         {
-            countDownTimer.start();
-            timerHasStarted = true;
-            startB.setText("Start");
-        }
-        else
-        {
-
-            countDownTimer.cancel();
-            timerHasStarted = false;
-            startB.setText("RESET");
-        }
-    }
-
-    // CountDownTimer class
-    public class MalibuCountDownTimer extends CountDownTimer
-    {
-
-        public MalibuCountDownTimer(long startTime, long interval)
-        {
-            super(startTime, interval);
-        }
-
-        @Override
-        public void onFinish()
-        {
-            text.setText("Time's up!");
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(startTime));
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished)
-        {
-            text.setText("Time remain:" + millisUntilFinished);
-            timeElapsed = startTime - millisUntilFinished;
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(timeElapsed));
+            a = randomGenerator.nextInt(13);
+            b = randomGenerator.nextInt(13);
+            c = a + b;
+            problem.setText(a + " + " + b); //Outputs created problem
+            //when submit clicked
+            su = in.getText().toString();   //Recieves user input
+            nu = Integer.parseInt(su);      //Converts user input to an integer value
+            if(nu == c)
+                count++;
         }
     }
 }

@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.util.Random;
 
-public class Main extends Activity
+public class MainActivity extends Activity
 {
     Random randomGenerator = new Random();
 
@@ -26,9 +26,11 @@ public class Main extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        addititon();
     }
 
-    int a = 0, b = 0, c = 0, count = 0, nu = 0,;
+    int a = 0, b = 0, c = 0, count = 0, nu = 0;
     String su = null;
     EditText in = (EditText)findViewById(R.id.editText);
     TextView problem = (TextView)findViewById(R.id.problem);
@@ -55,5 +57,6 @@ public class Main extends Activity
             submit.setOnClickListener(submitBtn);
         }
     }
+
 
 }
